@@ -1,27 +1,65 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Product extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  
-  Product.init({
-    name: DataTypes.STRING,
-    image_url: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Product',
-  });
-  return Product;
+	class Product extends Model {
+		/**
+		 * Helper method for defining associations.
+		 * This method is not a part of Sequelize lifecycle.
+		 * The `models/index` file will call this method automatically.
+		 */
+		static associate(models) {
+			// define association here
+		}
+	}
+
+	Product.init(
+		{
+			name: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						args: true,
+						msg: `field cannot blank!`,
+					},
+				},
+			},
+			image_url: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						args: true,
+						msg: `field cannot blank!`,
+					},
+					isUrl: true,
+				},
+			},
+			price: {
+				type: DataTypes.INTEGER,
+				validate: {
+					isNumeric: true,
+					min: {
+						args: 1,
+						msg: `gaboleh minus dong!`,
+					},
+					notEmpty: true,
+				},
+			},
+			stock: {
+				type: DataTypes.INTEGER,
+				validate: {
+					isNumeric: true,
+					min: {
+						args: 1,
+						msg: `gaboleh minus dong!`,
+					},
+					notEmpty: true,
+				},
+			},
+		},
+		{
+			sequelize,
+			modelName: "Product",
+		}
+	);
+	return Product;
 };

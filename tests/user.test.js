@@ -2,17 +2,33 @@ const request = require("supertest");
 const app = require("../app");
 const { sequelize } = require("../models");
 const { queryInterface } = sequelize;
+const { generateToken } = require("../helpers/jwt");
+const { User } = require("../models")
 
-// afterAll((done) => {
-// 	//hapus isi database ketika test sudah selesai
-// 	queryInterface
-// 		.bulkDelete("Users")
-// 		.then(() => done())
-// 		.catch((err) => {
-// 			done();
-// 		});
-// });
+const admin = { email: "admin@mail.com", password: "123456", role: "Admin" };
+let access_token;
+let token;
 
+beforeAll((done) => {
+	User.create(admin)
+		.then((user) => {
+			access_token = generateToken(user);
+			done();
+		})
+		.catch((err) => {
+			done();
+		});
+});
+
+afterAll((done) => {
+	//hapus isi database ketika test sudah selesai
+	queryInterface
+		.bulkDelete("Users")
+		.then(() => done())
+		.catch((err) => {
+			done();
+		});
+});
 
 describe("test user login POST /login", function () {
 	it("login success ", function (done) {

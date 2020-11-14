@@ -1,5 +1,5 @@
-function errHandler(err, req, res, next) {
-  // console.log(err, " <<<<<< ini di error handler");
+function errorHandler(err, req, res, next) {
+  // console.log(err, " <<<<<< masuk error handler");
   let statusCode = 500;
   let errors = [];
 
@@ -26,4 +26,4 @@ function errHandler(err, req, res, next) {
   res.status(statusCode).json({ errors });
 }
 
-module.exports = errHandler;
+module.exports = errorHandler;

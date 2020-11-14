@@ -12,6 +12,9 @@ class UserController {
 
 		User.findOne(options)
 			.then((data) => {
+
+				console.log(data, ' <<<<<<<< ini data ')
+
 				if (data) {
 					let isValid = comparePass(req.body.password, data.password);
 					if (isValid) {
@@ -31,6 +34,7 @@ class UserController {
 				}
 			})
 			.catch((err) => {
+				console.log(err, ' <<<<<<<<<< ini eror login ya')
 				return next(err)
 			});
 	}
