@@ -5,7 +5,8 @@ class Bcrypt {
 
   static hashPassword(data) {
     const salt = bcrypt.genSaltSync(+process.env.SALT)
-    return bcrypt.hashSync(data, salt)
+    const hash = bcrypt.hashSync(data, salt)
+    return hash
   }
 
   static comparePassword(data, hash) {

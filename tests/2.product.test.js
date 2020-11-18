@@ -8,7 +8,7 @@ let id
 beforeAll((done) => {
   const seed = {
     email: 'admin@mail.com',
-    password: '$2a$10$8WEFwLue7YkdRQMq1SbnzuvQbPgzOb0sAKetHQXAeSNRFnr8yEXFa',
+    password: '1234',
     role: 'admin'
   }
   User.create(seed)

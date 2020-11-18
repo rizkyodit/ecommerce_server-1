@@ -6,12 +6,16 @@ class UserController {
   static async register(req, res, next) {
     const payload = {
       email: req.body.email,
-      password: req.body.password,
-      role: req.body.role
+      password: req.body.password
     }
     try {
       const user = await User.create(payload)
-      res.status(201).json(user)
+      const result = {
+        id: user.id,
+        role: user.role,
+        email: user.email
+      }
+      res.status(201).json(result)
     } catch (error) {
       next(error)
     }
@@ -33,7 +37,7 @@ class UserController {
           id: user.id,
           email: user.email
         })
-        res.status(200).json({ token })
+        res.status(200).json({ token, id: user.id})
       }
     } catch (error) {
       next(error)
