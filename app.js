@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const express = require('express')
 const cors = require('cors')
 const route = require('./router/index')
@@ -14,8 +12,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(route)
 app.use(errorhandling)
 
-// app.listen(port, () => {
-//   console.log('http://localhost:' + port)
-// })
+app.listen(port, () => {
+  console.log('http://localhost:' + port)
+})
 
 module.exports = app

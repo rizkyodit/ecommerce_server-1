@@ -1,4 +1,4 @@
-const { Bcrypt, Jwt } = require('../helpers/index')
+const { comparePassword, Jwt } = require('../helpers/index')
 const { User } = require('../models/')
 
 class UserController {
@@ -30,7 +30,7 @@ class UserController {
       const user = await User.findOne({ where: { email: payload.email } })
       if (!user) {
         throw { message: 'Wrong Email/Password', status: 404 }
-      } else if (!Bcrypt.comparePassword(payload.password, user.password)) {
+      } else if (!comparePassword(payload.password, user.password)) {
         throw { message: 'Wrong Email/Password', status: 401 }
       } else {
         const token = Jwt.signToken({

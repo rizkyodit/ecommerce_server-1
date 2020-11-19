@@ -35,7 +35,10 @@
         **Content:** 
         ```json
         [
-          "Wrong Email/Password"
+          "Email Can't Be Empty!"
+          "Only Allow Email!"
+          "Password Can't Be Empty!"
+          "Password Can't Be Less Than 4 Characters!"
         ]
         ```
       
@@ -125,6 +128,12 @@
       - `image_url = [string]`
       - `price = [integer]`
       - `stock = [integer]`
+    
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -183,6 +192,12 @@
     * **Method:**
 
       `GET`
+    
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -241,11 +256,17 @@
 
       `GET`
     
-    *  **URL Params** 
+    * **URL Params** 
 
-        **Required:**
+      **Required:**
 
-        - `id = [integer]`
+      - `id = [integer]`
+    
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -305,18 +326,24 @@
       
     *  **URL Params** 
 
-        **Required:**
+      **Required:**
 
-        - `id = [integer]`
+      - `id = [integer]`
 
     * **Data Params**
 
-        **Required:**
+      **Required:**
 
-        - `name = [string]`
-        - `image_url = [string]`
-        - `price = [integer]`
-        - `stock = [integer]`
+      - `name = [string]`
+      - `image_url = [string]`
+      - `price = [integer]`
+      - `stock = [integer]`
+
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -388,9 +415,15 @@
       
     *  **URL Params** 
 
-        **Required:**
+      **Required:**
 
-        - `id = [integer]`
+      - `id = [integer]`
+
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -446,6 +479,12 @@
 
       - `ProductId = [integer]`
       - `amount = [integer]`
+
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -549,6 +588,12 @@
 
       `GET`
 
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
+
     * **Success Response:**
 
       * **Code:** `200 OK` <br />
@@ -624,10 +669,16 @@
       
     * **Data Params**
 
-        **Required:**
+      **Required:**
 
-        - `ProductId = [integer]`
-        - `amount = [integer]`
+      - `ProductId = [integer]`
+      - `amount = [integer]`
+    
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
 
     * **Success Response:**
 
@@ -683,6 +734,12 @@
     * **Method:**
 
       `DELETE`
+    
+    * **Headers**
+
+      **Required:**
+
+      - `token = [string]`
       
     * **Success Response:**
 

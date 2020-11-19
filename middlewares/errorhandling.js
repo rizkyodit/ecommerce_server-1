@@ -2,10 +2,14 @@ module.exports = (err, req, res, next) => {
   let status = ''
   let error = []
   console.log(err)
-  if (err.name == 'ValidationErrorItem' || err.name == 'SequelizeValidationError' || err.errors[0].type == 'unique violation') {
+  if (err.name == 'ValidationErrorItem' || err.name == 'SequelizeValidationError') {
     err.errors.forEach((el) => {
       if (el.message) {
-        error.push(el.message)
+        if (el.message == 'Validation error') {
+          error.push('Email Already Taken')
+        } else {
+          error.push(el.message)
+        }
       }
     })
     status = 400

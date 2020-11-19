@@ -1,17 +1,14 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-class Bcrypt {
+function hashPassword(data) {
+  const salt = bcrypt.genSaltSync(+process.env.SALT)
+  const hash = bcrypt.hashSync(data, salt)
+  return hash
+}
 
-  static hashPassword(data) {
-    const salt = bcrypt.genSaltSync(+process.env.SALT)
-    const hash = bcrypt.hashSync(data, salt)
-    return hash
-  }
-
-  static comparePassword(data, hash) {
-    return bcrypt.compareSync(data, hash)
-  }
+function comparePassword(data, hash) {
+  return bcrypt.compareSync(data, hash)
 }
 
 class Jwt {
@@ -26,6 +23,7 @@ class Jwt {
 }
 
 module.exports = {
-  Bcrypt,
+  hashPassword,
+  comparePassword,
   Jwt
 }
